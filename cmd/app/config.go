@@ -6,8 +6,8 @@ import (
 
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"gitlab.com/garzelli95/go-prod/internal/app"
-	"gitlab.com/garzelli95/go-prod/internal/log"
+	"gitlab.com/garzelli95/go-boilerplate/internal/app"
+	"gitlab.com/garzelli95/go-boilerplate/internal/log"
 )
 
 // Overall program configuration.

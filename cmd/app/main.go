@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/spf13/pflag"
-	"gitlab.com/garzelli95/go-prod/internal/log"
+	"gitlab.com/garzelli95/go-boilerplate/internal/log"
 )
 
 const (

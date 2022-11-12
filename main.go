@@ -1,1 +1,1 @@
-package goprod
+package goboilerplate
