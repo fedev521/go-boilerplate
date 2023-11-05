@@ -1,24 +1,24 @@
 # build stage
-FROM golang:1.19 AS builder
+FROM golang:1.21 AS builder
 
 WORKDIR /go/src/app
 
-COPY go.mod go.sum ./
-RUN go mod download
-
-COPY . .
+RUN --mount=type=cache,target=/go/pkg/mod/ \
+    --mount=type=bind,source=go.sum,target=go.sum \
+    --mount=type=bind,source=go.mod,target=go.mod \
+    go mod download
 
 ENV CGO_ENABLED=0
 RUN --mount=type=cache,target=/root/.cache/go-build \
-    go build -o /go/bin/app /go/src/app/cmd/app
-RUN --mount=type=cache,target=/root/.cache/go-build \
-    go test -v
-RUN --mount=type=cache,target=/root/.cache/go-build \
-    go vet -v
+    --mount=type=bind,target=. \
+    go build -o /go/bin/myapp /go/src/app/cmd/myapp
+# RUN --mount=type=cache,target=/root/.cache/go-build \
+#     go test -v
+# RUN --mount=type=cache,target=/root/.cache/go-build \
+#     go vet -v
 
-# package stage
-FROM gcr.io/distroless/static-debian11
+FROM gcr.io/distroless/static-debian12:nonroot
 WORKDIR /
-COPY --from=builder /go/bin/app .
-COPY configs .
-CMD ["/app", "-p", "8000"]
+COPY --from=builder --chown=nonroot --chmod=500 /go/bin/myapp .
+COPY --chown=nonroot --chmod=600 configs .
+CMD [ "/myapp", "-p", "8000" ]

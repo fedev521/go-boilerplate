@@ -15,14 +15,13 @@ Features:
 
 ## TODO
 
-- run function, then app start
+- devcontainer
 - VSCode launch and task
+- ko
 - graceful degradation
 - HTTP server
-- recover middleware
-- support to CLI?
-- telemetry?
-- tests?
+- telemetry
+- helloworld tests
 
 ## Useful Resources
 

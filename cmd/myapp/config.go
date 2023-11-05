@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/fedev521/go-boilerplate/internal/app"
+	"github.com/fedev521/go-boilerplate/internal/log"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"gitlab.com/garzelli95/go-boilerplate/internal/app"
-	"gitlab.com/garzelli95/go-boilerplate/internal/log"
 )
 
 // Overall program configuration.
@@ -36,6 +36,7 @@ func configureDefaultSettings() {
 	// config file settings
 	viper.AddConfigPath(".")
 	viper.AddConfigPath("configs")
+	viper.AddConfigPath("../../configs")
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
 

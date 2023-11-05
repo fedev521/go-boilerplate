@@ -5,8 +5,8 @@ import (
 	"io"
 	"os"
 
+	"github.com/fedev521/go-boilerplate/internal/log"
 	"github.com/spf13/pflag"
-	"gitlab.com/garzelli95/go-boilerplate/internal/log"
 )
 
 const (
