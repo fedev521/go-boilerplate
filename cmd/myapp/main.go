@@ -43,7 +43,8 @@ func run(args []string, _ io.Reader, _ io.Writer) error {
 	// now configuration is loaded, but not necessarily valid
 
 	logger := log.NewLogger(config.Log) // create logger (log config is valid)
-	log.SetStandardLogger(logger)       // override the global standard logger
+	log.SetStandardLogger(logger)       // override the global logger
+	log.SetDefaultLogger(logger)        // set the internal default logger
 
 	logger.Debug("Loaded configuration")
 

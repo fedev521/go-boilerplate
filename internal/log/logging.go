@@ -47,3 +47,28 @@ func NewLogger(config Config) logur.LoggerFacade {
 
 	return logrusadapter.New(logger)
 }
+
+var defaultLogger logur.LoggerFacade = NewSimpleLogger()
+
+// SetDefaultLogger sets the internal default logger to the given logger, thus
+// enabling the use of functions like Info() and Error() without having to pass
+// a reference to a logger here and there.
+func SetDefaultLogger(logger logur.LoggerFacade) {
+	defaultLogger = logger
+}
+
+func Trace(msg string, fields ...map[string]interface{}) {
+	defaultLogger.Trace(msg, fields...)
+}
+func Debug(msg string, fields ...map[string]interface{}) {
+	defaultLogger.Debug(msg, fields...)
+}
+func Info(msg string, fields ...map[string]interface{}) {
+	defaultLogger.Info(msg, fields...)
+}
+func Warn(msg string, fields ...map[string]interface{}) {
+	defaultLogger.Warn(msg, fields...)
+}
+func Error(msg string, fields ...map[string]interface{}) {
+	defaultLogger.Error(msg, fields...)
+}
