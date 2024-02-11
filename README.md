@@ -3,8 +3,7 @@
 Features:
 
 - Dockerfile that leverages cache to avoid unnecessary downloads, compilations
-  and tests. It uses a distroless Debian image. Build with `DOCKER_BUILDKIT=1
-  docker build -t "<imagename>:latest" .`
+  and tests. It uses a distroless Debian image with non-root user.
 - logging: uses [logur](https://github.com/logur/logur) as a facade (and
   adapter) and [logrus](https://github.com/sirupsen/logrus) under the hood.
   Always uses JSON formatter.
@@ -12,6 +11,28 @@ Features:
   mandatory configuration file named `config.toml`.
 - flags: with [pflag](https://github.com/spf13/pflag)
 - a `run()` function to facilitate tests.
+
+## Instructions
+
+Run with:
+
+```bash
+cd cmd/myapp
+go run .
+```
+
+Build container image with:
+
+```bash
+# DOCKER_BUILDKIT=1
+docker build -t goboilerplate:latest .
+```
+
+Run container with:
+
+```bash
+docker compose up
+```
 
 ## TODO
 
